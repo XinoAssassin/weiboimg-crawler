@@ -19,7 +19,7 @@ def GetID(nickname=None):
         m_page = BeautifulSoup(tmp.text, "lxml")
         fid = re.findall(fid_re, m_page.body.script.text)[0]
         return int(fid)
-    except TimeoutError:
+    except ValueError:
         return 404
 
 
@@ -35,9 +35,7 @@ def PageCount(url=None):
         else:
             # Unknow Error?
             pass
-    except TimeoutError:
-        pass
-    except json.decoder.JSONDecodeError:
+    except ValueError:
         return None
 
 
@@ -78,9 +76,7 @@ def GetJson(nickname=None, fid=None, page=None):
         else:
             # Unknow Error
             pass
-    except TimeoutError:
-        pass
-    except json.decoder.JSONDecodeError:
+    except ValueError:
         return None
 
 
