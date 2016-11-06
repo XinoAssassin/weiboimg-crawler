@@ -48,7 +48,9 @@ def CardInfo(nickname=None, card=None):
         # Need Text Only
         text = re.sub('<.+?>', '', card['mblog']['text'])
         pic_ids = card['mblog']['pic_ids']
-        WriteData(nickname, created_at, text, pic_ids)
+        gifs = card['mblog']['gif_ids'].replace(',', '|')
+        gif_ids = [x for x in gifs.split('|')]
+        WriteData(nickname, created_at, text, pic_ids, gif_ids)
     else:
         pass
 
